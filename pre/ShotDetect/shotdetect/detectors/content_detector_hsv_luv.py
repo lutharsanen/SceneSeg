@@ -58,13 +58,13 @@ class ContentDetectorHSVLUV(shotDetector):
 
             else:
                 num_pixels = frame_img.shape[0] * frame_img.shape[1]
-                curr_luv = cv2.split(cv2.cvtColor(frame_img, cv2.COLOR_BGR2Luv))
-                curr_hsv = cv2.split(cv2.cvtColor(frame_img, cv2.COLOR_BGR2HSV))
+                curr_luv = list(cv2.split(cv2.cvtColor(frame_img, cv2.COLOR_BGR2Luv)))
+                curr_hsv = list(cv2.split(cv2.cvtColor(frame_img, cv2.COLOR_BGR2HSV)))
                 last_hsv = self.last_hsv
                 last_luv = self.last_luv
                 if not last_hsv:
-                    last_hsv = cv2.split(cv2.cvtColor(self.last_frame, cv2.COLOR_BGR2HSV))
-                    last_luv = cv2.split(cv2.cvtColor(self.last_frame, cv2.COLOR_BGR2Luv))
+                    last_hsv = list(cv2.split(cv2.cvtColor(self.last_frame, cv2.COLOR_BGR2HSV)))
+                    last_luv = list(cv2.split(cv2.cvtColor(self.last_frame, cv2.COLOR_BGR2Luv)))
 
                 delta_hsv = [0, 0, 0, 0]
                 for i in range(3):
